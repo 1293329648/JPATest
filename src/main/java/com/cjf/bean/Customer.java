@@ -1,15 +1,30 @@
 package com.cjf.bean;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Entity
+@Table(name = "cst_customer")
 public class Customer implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 底层数据库支持 自动增长 Mysql
+                                        // sequence oracle  Table  jpa 提供的自动增长形式  AUTO 程序自动帮我们生成
+                                        //推荐前两种
+    @Column(name = "cust_id")
     private Long custId;
+    @Column(name = "cust_name")
     private String custName;
+    @Column(name = "cust_source")
     private String custSource;
+    @Column(name = "cust_industry")
     private String custIndustry;
+    @Column(name = "cust_level")
     private String custLevel;
+    @Column(name = "cust_address")
     private String custAddress;
+    @Column(name = "cust_phone")
     private String custPhone;
 
     public Long getCustId() {
@@ -67,5 +82,17 @@ public class Customer implements Serializable {
     public void setCustPhone(String custPhone) {
         this.custPhone = custPhone;
     }
-    
-}	
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "custId=" + custId +
+                ", custName='" + custName + '\'' +
+                ", custSource='" + custSource + '\'' +
+                ", custIndustry='" + custIndustry + '\'' +
+                ", custLevel='" + custLevel + '\'' +
+                ", custAddress='" + custAddress + '\'' +
+                ", custPhone='" + custPhone + '\'' +
+                '}';
+    }
+}
